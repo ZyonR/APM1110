@@ -1,0 +1,112 @@
+---
+title: "Formative_Assessment_1_Ramilo"
+author: "Zion John Yousef T. Ramilo"
+date: "2024-01-22"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(psych)
+library(ggplot2)
+library(dplyr)
+library(ggpubr)
+gender <- c('m', 'm', 'm', 'm', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'f', 'f', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'm', 'f', 'm', 'm', 'f', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'f', 'm', 'm', 'f', 'm', 'm', 'm', 'f', 'm', 'm', 'f', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'f', 'm', 'm', 'm', 'm', 'm', 'm', 'm')
+arch1 <- c(99, NA, 97, 99, 89, 91, 100, 86, 89, 85, 50, 96, 98, 96, 73, 67, 80, 91, 89, 77, 71, 84, 95, 3, 95, NA, 59, 95, 80, 97, 81, 77, 69, 82, 85, 87, 88, 83, 51, 76, 88, 61, 83, 90, 40, 92, 76, 72, 77, 58, 63, 48, 40, 40, 75, 49, 54, 56, 75, 64, 88, 82, 73, 59, 74, 45, 70, 74, 43, 49, 45, 74, 46, 56, 16, 21, 47, 77, 27, 74, 16, 14, 23, 83, NA, 45, 40, 48, 91, 50, 77, 49, 96, 21, 61, 50, 68, 50, 69, 60, 43, 43, 47, 60, 40, 45, 45, 31, 49, 87, 40, 8, 62, 14, 7, 16, 73, 56, 46)
+prog1 <- c(98, NA, 97, 97, 92, 97, 88, 82, 88, 90, 91, 71, 80, 76, 72, 82, 85, 76, 81, 81, 82, 81, 83, 87, 65, NA, 79, 83, 80, 92, 89, 70, 74, 79, 66, 68, 76, 76, 67, 63, 64, 53, 60, 78, 67, 61, 69, 61, 53, 52, 62, 73, 75, 40, 67, 61, 47, 55, 40, 86, 40, 66, 64, 28, 57, 69, 52, 29, 25, 69, 29, 71, 56, 52, 33, 25, 56, 60, 40, 13, 14, 31, 54, 76, 15, 40, 28, 27, 89, 27, 82, 49, 84, 29, 40, 19, 74, 40, 59, 36, 14, 30, 68, 47, 68, 26, 31, 21, 12, 40, 76, 29, 46, 21, 25, 27, 51, 54, 64)
+arch2 <- c(83, 86, 92, 95, 86, 91, 96, 89, 65, 83, 84, 56, 81, 59, 91, 80, 94, 85, 77, 88, 59, 88, 92, 56, 63, 91, 73, 49, 87, 98, 41, 51, 83, 57, 56, 56, 47, 41, 49, 57, 48, 54, 56, 81, 53, 47, 44, 62, 48, 50, 40, 74, 43, 48, 40, 49, 43, 44, 40, 50, 43, 51, 28, 60, 45, 35, 40, 44, 31, 40, 32, 40, 50, 42, 16, 26, 43, 47, 37, 40, NA, 14, 48, 58, 16, 40, 26, 23, 6, 22, 45, 36, 48, 25, 34, 41, 30, 51, 25, 40, NA, 40, 43, 40, 57, 38, NA, 32, 24, 40, 49, 15, 50, NA, 27, 25, 48, 49, 13)
+prog2 <- c(94, 77, 93, 96, 94, 97, 85, 87, 84, 85, 93, 83, 94, 84, 87, 77, 72, 84, 81, 91, 79, 77, 63, 76, 82, 65, 82, 69, 72, 96, 57, 71, 68, 45, 67, 78, 61, 65, 79, 76, 53, 61, 49, 50, 68, 64, 59, 56, 60, 73, 48, 53, 52, 62, 45, 44, 52, 55, 51, 81, 83, 63, 54, 51, 61, 40, 43, 52, 14, 24, 25, 46, 28, 57, 9, 12, 16, 62, 6, 18, NA, 20, NA, 75, NA, 61, 9, 16, 73, 11, 65, 31, 29, 5, 11, NA, 48, 56, 40, 28, NA, 14, 34, NA, 75, 6, NA, 8, 14, 32, 17, 14, 31, NA, 7, 7, 23, 25, 19)
+
+df <- data.frame(gender,arch1,prog1,arch2,prog2)
+```
+
+## Question 1: 
+
+Write the **skewness program**, and use it to calculate the skewness coefficient of the four examination subjects.
+
+a.) What can you say about these data?
+b.) Pearson has given an approximate formula for the skewness, Is it a reasonable approximation? 
+
+
+```{r}
+for (i in 2:5){
+  col_values <- na.exclude(df[[i]])
+  col_mean <- mean(col_values)
+  col_median <- median(col_values)
+  std_dev <- describe(col_values)$sd
+  
+  difference_arr <- c()
+  for (val in col_values){
+    ans <- (val - col_mean)^3
+    difference_arr <- append(difference_arr,ans)
+  }
+  
+  pearson_approx = 3*((col_mean - col_median) / std_dev)
+  
+  summation_x_xi = sum(difference_arr)
+  size_arr = length(col_values)
+  
+  
+  skewness_ = summation_x_xi / ((size_arr - 1) * (std_dev^3))
+  cat("Subject:",colnames(df)[i],", Skewness: ",skewness_,", Pearson: ",pearson_approx,", Error %: ",(abs((skewness_-pearson_approx)/pearson_approx))*100,"\n")
+}
+```
+a.) The Data shows that for the exam scores for arch1,prog1, and prog2 it is skewed to the left indicates that more students are scored high percentiles and has a communicates a moderate amount of skewness, whilst the exam scores for arch2 shows moderate amount of skewness to the right indicating lower scores from the students. These interpretations is supported by the figures below that showcases the density distributions of each exam scores.
+```{r}
+df_none_na <- na.omit(df)
+figA <- ggplot(df_none_na, aes(x = arch1))+
+  geom_density(adjust = 2)+
+  labs(title = 'Density Distribution of arch1')
+figB <- ggplot(df_none_na, aes(x = prog1))+
+  geom_density(adjust = 2)+
+  labs(title = 'Density Distribution of prog1')
+
+figC <-ggplot(df_none_na, aes(x = arch2))+
+  geom_density(adjust = 2)+
+  labs(title = 'Density Distribution of arch2')
+figD <-ggplot(df_none_na, aes(x = prog2))+
+  geom_density(adjust = 2)+
+  labs(title = 'Density Distribution of prog2')
+
+ggarrange(figA,figB,figC,figD,
+          ncol = 2,nrow = 2,align = ("v"), 
+          labels = c("A ", "B ", "C ", "D "))
+
+```
+
+b.) Pearson's approximation does tell us the direction of where the skewness is however the degree of skewness are to be debated upon, within the percentage of errors some are below 20% and there is those that has above 40% and this can be really be difficult when we are dealing with very small decimals such as 0.03 as the skewness and if we can't get an accurate representation of skewness we cannot tell whenever we can say our distribution is approximately normal or not.
+
+## Question 2: 
+
+For the class of 50 students of computing detailed in Exercise 1.1, use R to:
+
+a.) form the stem-and-leaf display for each gender, and discuss the advantages of this representation compared to the traditional histogram
+b.) construct a box-plot for each gender and discuss the findings.  
+
+```{r}
+gender_scores <- read.csv("C:/Users/acer/Downloads/Gender_Scores - Sheet1.csv")
+
+group_data <- gender_scores %>% 
+ group_by(gender) %>% 
+group_split()
+
+female_data <- group_data[[1]]
+male_data <- group_data[[2]]
+print("Stem-n-Leaf for Female Scores")
+stem(female_data[[2]])
+print("Stem-n-Leaf for Male Scores")
+stem(male_data[[2]])
+```
+
+a.) Generally we use a stem and leaf plot in order to observe and analyze individual data points and get an idea of the distribution of our data set, it is very helpful for smaller samples of data, in addition using a stem and leaf plot helps us identify potential outliers that our traditional histogram cannot communicate.
+```{r}
+gender_scores %>%
+  ggplot(aes(x = gender, y = scores, fill = gender)) +
+  geom_boxplot()+
+  labs(title = " First-year Java programming examination Scores")+
+  scale_fill_discrete(labels = c("Female", "Male"))
+```
+
+b.) Within the box plot we can see that on average the female group will be greater than the male group in terms of examination scores, the box plot also tells us the the inter quantiles of the men and women are different in terms of with or spread. Typically a student from the female group can get about a 75%, whilst typically the male group can get about 50% this denoted through thier medians. Within the male group the plot showed an outlier with a point of 86%. Within the test the female group has a maximum of about 85% and a minimum of about 40% whilst the male group has a maximum of about 75% and a minimum of about 30%.
+
+
