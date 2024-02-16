@@ -30,13 +30,13 @@ a.) Find P(R1)
 
 $$
 \begin{aligned}
-P(\text{received}_1) = P(\text{received}_1\cap\text{transmitted}_1)\cup P(\text{received}_1\cap\text{transmitted}_1)\\
+P(\text{received}_1) &= P(\text{received}_1\cap\text{transmitted}_1) + P(\text{received}_1\cap\text{transmitted}_0)\\
 \text{Since they are mutually exclusive we can say that: }\\
-P(\text{received}_1) = P(\text{received}_1\cap\text{transmitted}_1)+ P(\text{received}_1\cap\text{transmitted}_1)\\
-P(\text{received}_1\cap\text{transmitted}_1) = P(\text{transmitted}_1) * P(\text{received}_1|\text{transmitted}_1)\\
-P(\text{received}_1) = P(\text{transmitted}_1) * P(\text{received}_1|\text{transmitted}_1) + P(\text{transmitted}_0) * P(\text{received}_1|\text{transmitted}_0)\\
+P(\text{received}_1) &= P(\text{received}_1\cap\text{transmitted}_1) + P(\text{received}_1\cap\text{transmitted}_0)\\
+P(\text{received}_1\cap\text{transmitted}_1) &= P(\text{transmitted}_1) * P(\text{received}_1|\text{transmitted}_1)\\
+P(\text{received}_1) &= P(\text{transmitted}_1) * P(\text{received}_1|\text{transmitted}_1) + P(\text{transmitted}_0) * P(\text{received}_1|\text{transmitted}_0)\\
 \text{Which is equivalent to: }\\
-P(\text{received}_1) = (0.3*0.75)+(0.7*0.05) = 0.26
+P(\text{received}_1) &= (0.3 \times 0.75) + (0.7 \times 0.05) = 0.26
 \end{aligned}
 $$
 
@@ -82,9 +82,9 @@ a.) Find total Error or P(Error)
 
 $$
 \begin{aligned}
-P(\text{Error}) = P(\text{Error}\cap\text{Jane})\cup P(\text{Error}\cap\text{Amy})\cup P(\text{Error}\cap\text{Ava})\\
-P(\text{Error}) = P(\text{Jane})P(\text{Error}|\text{Jane}) + P(\text{Amy})P(\text{Error}|\text{Amy}) + P(\text{Ava})P(\text{Error}|\text{Ava})\\
-P(\text{Error}) = (0.1*0.08)+(0.3*0.05)+(0.6*0.01) = 0.029 = 2.9\%\\
+P(\text{Error}) &= P(\text{Error}\cap\text{Jane}) \cup P(\text{Error}\cap\text{Amy}) \cup P(\text{Error}\cap\text{Ava}) \\
+P(\text{Error}) &= P(\text{Jane})P(\text{Error}|\text{Jane}) + P(\text{Amy})P(\text{Error}|\text{Amy}) + P(\text{Ava})P(\text{Error}|\text{Ava}) \\
+P(\text{Error}) &= (0.1 \times 0.08) + (0.3 \times 0.05) + (0.6 \times 0.01) = 0.029 = 2.9\%
 \end{aligned}
 $$
 
@@ -96,12 +96,17 @@ print(paste("Overall error is",error))
     ## [1] "Overall error is 0.029"
 
 b.) Find the Maximum P(employee \| Error) 
+
 $$
-\begin{aligned}
-P(\text{Jane}|\text{Error}) = \frac{P(\text{Jane})*P(\text{Error}|\text{Jane})}{P(\text{Error})} = \frac{0.1*0.08}{0.029} \approx 0.2759 \approx 27.59\%\\
-P(\text{Amy}|\text{Error}) = \frac{P(\text{Amy})*P(\text{Error}|\text{Amy})}{P(\text{Error})} = \frac{0.3*0.05}{0.029} \approx 0.5172 \approx 51.72\%\\
-P(\text{Ava}|\text{Error}) = \frac{P(\text{Ava})*P(\text{Error}|\text{Ava})}{P(\text{Error})} = \frac{0.6*0.01}{0.029} \approx 0.2069 \approx 20.69\%\\
-\end{aligned}
+P(\text{Jane}|\text{Error}) =\frac{P(\text{Jane})\times P(\text{Error}|\text{Jane})}{P(\text{Error})} = \frac{0.1\times 0.08}{0.029} \approx 0.2759 \approx 27.59\%
+$$
+
+$$
+P(\text{Amy}|\text{Error}) = \frac{P(\text{Amy})\times P(\text{Error}|\text{Amy})}{P(\text{Error})} = \frac{0.3\times 0.05}{0.029} \approx 0.5172 \approx 51.72\%
+$$
+
+$$
+P(\text{Ava}|\text{Error}) = \frac{P(\text{Ava})\times P(\text{Error}|\text{Ava})}{P(\text{Error})} = \frac{0.6\times 0.01}{0.029} \approx 0.2069 \approx 20.69\% 
 $$
 
 ``` r
