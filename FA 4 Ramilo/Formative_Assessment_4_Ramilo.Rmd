@@ -1,0 +1,80 @@
+---
+title: "Formative Assessment 4"
+author: "Ramilo, Zion John Yousef T."
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+Sensor <- 1:4
+Images_Supplied <- c(0.15,0.20,0.25,0.40)
+Relevant_Images <- c(0.50,0.60,0.80,0.85)
+geospatial_analysis_system <- data.frame("Sensors" = Sensor,
+                                         "P_Images_Supplied" = Images_Supplied,
+                                         "P_Relevant_Images" = Relevant_Images)
+col0<-c("H","T")
+col1<-c("HH","HT")
+col2 <- c("TH","TT")
+
+coinToss_of2 <- data.frame("coin"=col0,"H" = col1,"T"=col2)
+
+```
+1. A geospatial analysis system has four sensors supplying images. The percentage of images supplied by each sensor and the percentage of images relevant
+to a query are shown in the following table.
+```{r}
+head(geospatial_analysis_system)
+```
+What is the overall percentage of relevant images?
+```{r}
+p_of_relevant_images = c()
+for(i in 1:4){
+  intersection <- (geospatial_analysis_system$P_Images_Supplied[i])*(geospatial_analysis_system$P_Relevant_Images[i])
+  p_of_relevant_images <- c(p_of_relevant_images,intersection)
+}
+summed_p_of_relevant_images<-sum(p_of_relevant_images)
+print(paste("P(Relevant Images): ",summed_p_of_relevant_images*100,"%"))
+```
+2. A fair coin is tossed twice. Let E1 be the event that both tosses have the same outcome, that is, E1 = (HH, TT). Let E2 be the event that the first toss is a head, that is, E2 = (HH, HT). Let E3 be the event that the second toss is a head, that is, E3 = (TH, HH). Show that E1, E2, and E3 are pairwise independent but not mutually independent.
+```{r}
+head(coinToss_of2)
+```
+Pair Wise Independence
+E1 = (HH, TT)
+E2 = (HH, HT)
+E3 = (TH, HH)
+
+$$
+\begin{align*}
+\text{Show that P}(E_1 \cap E_2) = \text{P}(E_1)*\text{P}(E_2)\\\text{Similarly, }\text{P}(E_2 \cap E_3) = \text{P}(E_2)*\text{P}(E_3), \text{and},\\
+\text{P}(E_1 \cap E_3) = \text{P}(E_1)*\text{P}(E_3)
+\end{align*}
+$$
+Since E1 = (HH, TT) then it is equivalent to 1/2 similarly for E2 and E3 wherein individually they have a probability of 1/2. P(E1 intersection E2) is equivalent to 1/4 for both events happening, P(E2 intersection E3) is equivalent to 1/4, P(E1 intersect E3) which is equivalent to 1/4.
+$$
+\begin{align*}
+\text{P}(E_2)=\text{P}(E_2)=\text{P}(E_3) = 1/2, \text{and},\\
+\text{P}(E_1 \cap E_2) = \text{P}(E_2 \cap E_3) = \text{P}(E_1 \cap E_3) = 1/4\\
+\end{align*}
+$$
+Through this computation we can confirm that they are equivalent rendering E1,E2,and E3 are pairwise independent.
+$$
+\begin{align*}
+\text{P}(E_1 \cap E_2) = \text{P}(E_1)*\text{P}(E_2) = 1/4\\
+\text{P}(E_2 \cap E_3) = \text{P}(E_2)*\text{P}(E_3) = 1/4\\
+\text{P}(E_1 \cap E_3) = \text{P}(E_1)*\text{P}(E_3) = 1/4
+\end{align*}
+$$
+To prove that they are not mutually independent we must show that the intersection of all events shall not be equivalent to multiplication of all the individual events.
+$$
+\begin{align*}
+\text{P}(E_1 \cap E_2 \cap E_3) \ne \text{P}(E_1)*\text{P}(E_2)*\text{P}(E_3)
+\end{align*}
+$$
+For all events to happen simultaneously we must have an out come of HH which in this case is equivalent to a probability of 1/4 and if we multiply them with each other we get 1/8 since individually they are all equal to 1/2.
+$$
+\begin{align*}
+\text{P}(E_1 \cap E_2 \cap E_3) = 1/4\\ \text{P}(E_1)*\text{P}(E_2)*\text{P}(E_3) = 1/8
+\end{align*}
+$$
+Since they are not equivalent we can say that they are not mutually independent.
