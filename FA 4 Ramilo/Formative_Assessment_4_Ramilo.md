@@ -50,8 +50,8 @@ Pair Wise Independence E1 = (HH, TT) E2 = (HH, HT) E3 = (TH, HH)
 
 $$
 \begin{align*}
-\text{Show that P}(E_1 \cap E_2) = \text{P}(E_1)*\text{P}(E_2)\\\text{Similarly, }\text{P}(E_2 \cap E_3) = \text{P}(E_2)*\text{P}(E_3), \text{and},\\
-\text{P}(E_1 \cap E_3) = \text{P}(E_1)*\text{P}(E_3)
+\text{Show that P}(E_1 \cap E_2) = \text{P}(E_1)\times\text{P}(E_2)\\\text{Similarly, }\text{P}(E_2 \cap E_3) = \text{P}(E_2)\times\text{P}(E_3), \text{and},\\
+\text{P}(E_1 \cap E_3) = \text{P}(E_1)\times\text{P}(E_3)
 \end{align*}
 $$ Since E1 = (HH, TT) then it is equivalent to 1/2 similarly for E2 and
 E3 wherein individually they have a probability of 1/2. P(E1
@@ -65,22 +65,22 @@ equivalent to 1/4. $$
 $$ Through this computation we can confirm that they are equivalent
 rendering E1,E2,and E3 are pairwise independent. $$
 \begin{align*}
-\text{P}(E_1 \cap E_2) = \text{P}(E_1)*\text{P}(E_2) = 1/4\\
-\text{P}(E_2 \cap E_3) = \text{P}(E_2)*\text{P}(E_3) = 1/4\\
-\text{P}(E_1 \cap E_3) = \text{P}(E_1)*\text{P}(E_3) = 1/4
+\text{P}(E_1 \cap E_2) = \text{P}(E_1)\times\text{P}(E_2) = 1/4\\
+\text{P}(E_2 \cap E_3) = \text{P}(E_2)\times\text{P}(E_3) = 1/4\\
+\text{P}(E_1 \cap E_3) = \text{P}(E_1)\times\text{P}(E_3) = 1/4
 \end{align*}
 $$ To prove that they are not mutually independent we must show that the
 intersection of all events shall not be equivalent to multiplication of
 all the individual events. $$
 \begin{align*}
-\text{P}(E_1 \cap E_2 \cap E_3) \ne \text{P}(E_1)*\text{P}(E_2)*\text{P}(E_3)
+\text{P}(E_1 \cap E_2 \cap E_3) \ne \text{P}(E_1)\times\text{P}(E_2)\times\text{P}(E_3)
 \end{align*}
 $$ For all events to happen simultaneously we must have an out come of
 HH which in this case is equivalent to a probability of 1/4 and if we
 multiply them with each other we get 1/8 since individually they are all
 equal to 1/2. $$
 \begin{align*}
-\text{P}(E_1 \cap E_2 \cap E_3) = 1/4\\ \text{P}(E_1)*\text{P}(E_2)*\text{P}(E_3) = 1/8
+\text{P}(E_1 \cap E_2 \cap E_3) = 1/4\\ \text{P}(E_1)\times\text{P}(E_2)\times\text{P}(E_3) = 1/8
 \end{align*}
 $$ Since they are not equivalent we can say that they are not mutually
 independent.
