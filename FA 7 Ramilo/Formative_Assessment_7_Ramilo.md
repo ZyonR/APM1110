@@ -1,0 +1,158 @@
+Formative Assessment 7
+================
+Ramilo, Zion John Yousef T.
+2024-03-02
+
+1.  In Example 16.3 with 𝜆 = 4 per minute, use R to obtain:
+    - P(T ≤ 0.25) = P(time between submissions is at most 15 seconds);
+    - P(T \> 0.5) = P(time between submissions is greater than 30
+      seconds);
+    - P(0.25 \< T \< 1) = P(time between submissions is between 15
+      seconds and 1 minute).
+
+P(T ≤ 0.25) = P(time between submissions is at most 15 seconds);
+
+``` r
+cdf_exponential <- function(lambda,x){ #P(T <= t)
+  probability <- 1-exp(-lambda*x)
+  return (probability)
+}
+
+probability_submissions_15s <- round(cdf_exponential(4,0.25),2)
+print(paste("Probability such that time between submissions is at most 15 seconds is",probability_submissions_15s))
+```
+
+    ## [1] "Probability such that time between submissions is at most 15 seconds is 0.63"
+
+P(T \> 0.5) = P(time between submissions is greater than 30 seconds);
+
+``` r
+#P(T > 0.5) = 1-P(T<=0.5)
+probability_submissions_30s <- 1-round(cdf_exponential(4,0.5),2)
+print(paste("Probability such that time between submissions is greater than 30 seconds",probability_submissions_30s))
+```
+
+    ## [1] "Probability such that time between submissions is greater than 30 seconds 0.14"
+
+P(0.25 \< T \< 1) = P(time between submissions is between 15 seconds and
+1 minute).
+
+``` r
+#P(0.25 < T < 1) = (P(T<=1) - P(T=1)) - P(T <= 0.25)
+#Since P(T=1) = 0 we can say that P(T<1) = P(T<=1)
+#So, P(0.25 < T < 1) = P(T<=1) - P(T <= 0.25)
+probability_submissions_60s <- round(cdf_exponential(4,1),2)
+print(paste("Probability such that time between submissions is at most 60 seconds",probability_submissions_60s))
+```
+
+    ## [1] "Probability such that time between submissions is at most 60 seconds 0.98"
+
+``` r
+print(paste("Probability such that the time between submissions is at least 15 seconds but at most 60 seconds",probability_submissions_60s-probability_submissions_15s))
+```
+
+    ## [1] "Probability such that the time between submissions is at least 15 seconds but at most 60 seconds 0.35"
+
+2.  The average rate of job submissions in a computer center is 2 per
+    minute. If it can be assumed that the number of submissions per
+    minute has a Poisson distribution, calculate the probability that:
+    - more than two jobs will arrive in a minute;
+    - at least 30 seconds will elapse between any two jobs;
+    - less than 30 seconds will elapse between jobs;
+    - a job will arrive in the next 30 seconds, if no jobs have arrived
+      in the last 30 seconds.
+
+More than two jobs will arrive in a minute;
+
+``` r
+#P(X>2) =1- P(X <= 2) = 1-[P(X = 0)+P(X = 1)+P(X = 2)]
+
+print(paste("The Probability that more than two jobs will arrive in a minute is equivalent to: ",round(1-sum(dpois(0:2,2)),2)))
+```
+
+    ## [1] "The Probability that more than two jobs will arrive in a minute is equivalent to:  0.32"
+
+At least 30 seconds will elapse between any two jobs;
+
+``` r
+#P(X>=30) = P(X>=0.5) = 1-P(X<0.5) = 1-P(X<=0.5)-P(X=0.5) = 1-P(X<=0.5)
+probability_elapsed_30s <- round(cdf_exponential(2,0.5),2)
+print(paste("The Probability that at least 30 seconds will elapse between any two jobs: ",1-probability_elapsed_30s))
+```
+
+    ## [1] "The Probability that at least 30 seconds will elapse between any two jobs:  0.37"
+
+Less than 30 seconds will elapse between jobs;
+
+``` r
+print(paste("The Probability that less than 30 seconds will elapse between jobs: ",probability_elapsed_30s))
+```
+
+    ## [1] "The Probability that less than 30 seconds will elapse between jobs:  0.63"
+
+A job will arrive in the next 30 seconds, if no jobs have arrived in the
+last 30
+
+``` r
+#P(T<=60 | T>30) = P(T<=30)
+probability_elapsed_30s <- round(cdf_exponential(2,0.5),2)
+print(paste("The Probability that a job will arrive in the next 30 seconds, if no jobs have arrived in the last 30: ",probability_elapsed_30s))
+```
+
+    ## [1] "The Probability that a job will arrive in the next 30 seconds, if no jobs have arrived in the last 30:  0.63"
+
+3.  A website receives an average of 15 visits per hour, which arrive
+    following a Poisson distribution.
+    - Calculate the probability that at least 10 minutes will elapse
+      without a visit.
+    - What is the probability that in any hour, there will be less than
+      eight visits?
+    - Suppose that 15 minutes have elapsed since the last visit, what is
+      the probability that a visit will occur in the next 15 minutes.
+    - Calculate the top quartile, and explain what it means.
+
+Calculate the probability that at least 10 minutes will elapse without a
+visit.
+
+``` r
+#P(T >= 10) = 1-P(T<=10) = 1-P(T<10)-P(T=10) = 1-P(T<=10)
+probability_elapsed_10m <- round(cdf_exponential(15,(1/6)),3)
+print(paste("The Probability that the probability that at least 10 minutes will elapse without a visit.: ",1-probability_elapsed_10m))
+```
+
+    ## [1] "The Probability that the probability that at least 10 minutes will elapse without a visit.:  0.082"
+
+What is the probability that in any hour, there will be less than eight
+visits?
+
+``` r
+#P(X < 8) = P(X<=7) = [P(X = 0)+P(X = 1)+P(X = 2)+...+P(X=7)]
+print(paste("The Probability that in any hour, there will be less than eight visits: ",round(sum(dpois(0:7,15)),3)))
+```
+
+    ## [1] "The Probability that in any hour, there will be less than eight visits:  0.018"
+
+Suppose that 15 minutes have elapsed since the last visit, what is the
+probability that a visit will occur in the next 15 minutes.
+
+``` r
+#P(T<=30 | T>15) = P(T<=15)
+probability_elapsed_15m <- round(cdf_exponential(15,(15/60)),2)
+print(paste("The Probability a visit will occur in the next 15 minutes: ",probability_elapsed_15m))
+```
+
+    ## [1] "The Probability a visit will occur in the next 15 minutes:  0.98"
+
+Calculate the top quartile, and explain what it means.
+
+``` r
+top_quartile <- qpois(0.75,15)
+print(paste("Top quartile is equivalent to: ",top_quartile))
+```
+
+    ## [1] "Top quartile is equivalent to:  18"
+
+Top Quartile is the K such that it has a probability of 75% meaning it
+is the K that 75% of the time we are to see less than or equal to 18
+visits those 25% are those that if it is larger than 18 visits it has a
+probability of 25%.
