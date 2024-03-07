@@ -17,7 +17,9 @@ head(df_messages_server)
     ## 2 Server 2                   0.25                0.020
     ## 3 Server 3                   0.35                0.015
 
-Determine the percentage of emails that contain an error. $$
+Determine the percentage of emails that contain an error. 
+
+$$
 \begin{aligned}
 \text{P}(\text{Errors}) = \text{P}(\text{Server 1})\times\text{P}(\text{Errors | Server 1}) +\\\text{P}(\text{Server 2})\times\text{P}(\text{Errors | Server 2}) +\text{P}(\text{Server 3})\times\text{P}(\text{Errors | Server 3})
 \end{aligned}
@@ -78,12 +80,16 @@ print(paste("P(~G) is equivalent to: ",1-sum(probability_G),"or equal to",100-su
     ## [1] "P(~G) is equivalent to:  0.68 or equal to 68 %"
 
 Explain what is meant by the posterior probability of B given G,
-P(B\|G). $$
+P(B\|G). 
+
+$$
 \begin{aligned}
 \text{P}(\text{B|G}) = \frac{\text{P(B}\cap\text{G)}}{\text{P(G)}}\\
 = \frac{\text{P(G}|\text{B)}\times\text{P(B)}}{\text{P(G)}}\\
 \end{aligned}
-$$ the probability of B given G is equivalent to P(B intersection G)
+$$ 
+
+the probability of B given G is equivalent to P(B intersection G)
 over P(G) wherein P(B intersection G) is equivalent to P(G\|B)
 Multiplied by P(B) based on the Bayes Rule.Where P(B\|G) says that given
 that G already happened what is the probability that B also happens.
@@ -118,7 +124,9 @@ head(df_virus_detection)
 2)  If the spyware is detected, what is the probability that it came
     through the Internet?
 
-What is the probability that this spyware infects the system? $$
+What is the probability that this spyware infects the system? 
+
+$$
 \begin{aligned}
 \text{P}(\text{Infect}) = 1-\text{P}(\text{Detect})\\
 \text{P}(\text{Detect}) = \text{P}(\text{Internet})\times\text{P}(\text{Detect|Internet})+\\\text{P}(\text{Email})\times\text{P}(\text{Detect|Email})
@@ -137,7 +145,9 @@ print(paste("P(~Detect) or P(Infect) is equivalent to: ",1-sum(probability_detec
     ## [1] "P(~Detect) or P(Infect) is equivalent to:  0.34 or equal to 34 %"
 
 If the spyware is detected, what is the probability that it came through
-the Internet? $$
+the Internet? 
+
+$$
 \begin{aligned}
 \text{P}(\text{Internet|Detect}) = \frac{\text{P(Internet}\cap\text{Detect)}}{\text{P(Detect)}}\\
 = \frac{\text{P(Detect}|\text{Internet)}\times\text{P(Internet)}}{\text{P(Detect)}}\\
