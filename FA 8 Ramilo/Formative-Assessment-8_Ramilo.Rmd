@@ -1,0 +1,124 @@
+---
+title: "Formative Assessment 8"
+author: "Ramilo, Zion John Yousef T."
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+Question 1:
+An analogue signal received at a detector, measured in microvolts, is normally
+distributed with mean of 200 and variance of 256.
+
+a. What is the probability that the signal will exceed 224 𝜇V?
+```{r}
+mean <- 200
+variance <- 256
+std_dev <- sqrt(variance)
+x<- 224
+
+q1_a <- 1-pnorm(x,mean = mean,sd=std_dev)
+cat("P(X  > 224) =",q1_a,"or",round(q1_a,4)*100,"%")
+```
+b. What is the probability that it will be between 186 and 224 𝜇V?
+```{r}
+
+x_1 <- 224
+x_2 <- 186
+
+q1_b_1 <- pnorm(x_1,mean = mean,sd=std_dev)
+q1_b_2 <- pnorm(x_2,mean = mean,sd=std_dev)
+
+q1_b <- q1_b_1-q1_b_2
+cat("P(186 < X < 224) =",q1_b,"or",round(q1_b,4)*100,"%")
+```
+c. What is the micro voltage below which 25% of the signals will be?
+```{r}
+q1_c <- qnorm(0.25,mean = mean,sd=std_dev)
+cat("P(X < x) =",0.25,"equates to:",q1_c,"micro volts")
+```
+d. What is the probability that the signal will be less than 240 𝜇V, given that
+it is larger than 210 𝜇V?
+```{r}
+x_1 <- 240
+x_2 <- 210
+
+q1_d_1 <- pnorm(x_1,mean = mean,sd=std_dev)
+q1_d_2 <- pnorm(x_2,mean = mean,sd=std_dev)
+
+q1_d_numerator <- q1_d_1-q1_d_2
+q1_d_dinominator <- 1-q1_d_2
+
+q1_d <- q1_d_numerator/q1_d_dinominator
+
+cat("P(210 < X < 240)/ P(X > 210) =",q1_d,"or",round(q1_d,4)*100,"%")
+```
+e. Estimate the interquartile range.
+```{r}
+quartile_3 <- 0.75
+quartile_1 <- 0.25
+
+q1_e_1 <- qnorm(quartile_3,mean = mean,sd=std_dev)
+q1_e_2 <- qnorm(quartile_1,mean = mean,sd=std_dev)
+
+cat("Interquartile Range: ",q1_e_1-q1_e_2,"micro volts")
+```
+f. What is the probability that the signal will be less than 220 𝜇V, given that
+it is larger than 210 𝜇V?
+```{r}
+x_1 <- 220
+x_2 <- 210
+
+q1_f_1 <- pnorm(x_1,mean = mean,sd=std_dev)
+q1_f_2 <- pnorm(x_2,mean = mean,sd=std_dev)
+
+q1_f_numerator <- q1_f_1-q1_f_2
+q1_f_dinominator <- 1-q1_f_2
+
+q1_f <- q1_f_numerator/q1_f_dinominator
+
+cat("P(210 < X < 220)/ P(X > 210) =",q1_f,"or",round(q1_f,4)*100,"%")
+```
+g.  If we know that a received signal is greater that 200 𝜇V, what is the probability that is in fact greater than 220 𝜇V?
+```{r}
+x_1 <- 220
+x_2 <- 200
+
+q1_g_1 <- 1-pnorm(x_1,mean = mean,sd=std_dev)
+q1_g_2 <- 1-pnorm(x_2,mean = mean,sd=std_dev)
+
+q1_g <- q1_g_1/q1_g_2
+
+cat("P(X > 220)/ P(X > 200) =",q1_g,"or",round(q1_g,4)*100,"%")
+```
+Question 2:
+A manufacturer of a particular type of computer system is interested in improving its customer support services. As a first step, its marketing department has
+been charged with the responsibility of summarizing the extent of customer
+problems in terms of system failures. Over a period of six months, customers
+were surveyed and the amount of downtime (in minutes) due to system failures
+they had experienced during the previous month was collected. The average
+downtime was found to be 25 minutes and a variance of 144. If it can be
+assumed that downtime is normally distributed:
+
+(a) obtain bounds which will include 95% of the downtime of all the customers;
+```{r}
+confidence_lvl <- 0.95
+two_tailed_test <- (1-confidence_lvl)/2
+
+upperBound <- qnorm(confidence_lvl+two_tailed_test,mean = 25,sd = sqrt(144))
+lowerBound <- qnorm(two_tailed_test,mean = 25,sd = sqrt(144))
+
+cat("Bounds includes: ","(",lowerBound,"minutes ,",upperBound,"minutes )")
+```
+(b) obtain the bound above which 10% of the downtime is included.
+```{r}
+minimumBound <- qnorm(0.9,mean = 25,sd = sqrt(144))
+cat("Top 10% of the downtime is included: ",minimumBound,"minutes")
+```
+
+
+
+
