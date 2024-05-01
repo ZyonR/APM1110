@@ -23,49 +23,95 @@ which now equates the expected to the following equation:
 
 $$
 E[x] = \int_0^\infty\ x\cdot \frac{x^{\alpha-1} e^{-\frac{x}{\beta}}}{\Gamma(\alpha)\beta^\alpha} dx
-$$ Since we are just integrating with respect to X we are able to remove
+$$ 
+
+Since we are just integrating with respect to X we are able to remove
 the constants namely: $\frac{1}{\Gamma(\alpha)}$, in addition, let us
 simplify the x variable and combine it with our $\beta$. Constituting to
-an equation of: $$
+an equation of: 
+
+$$
 E[x] = \frac{1}{\Gamma(\alpha)}\int_0^\infty\ (\frac{x}{\beta})^{\alpha} \cdot e^{-\frac{x}{\beta}} dx
-$$ as we can observe we have $\frac{x}{\beta}$ within the exponential
+$$ 
+
+as we can observe we have $\frac{x}{\beta}$ within the exponential
 and the expression next to it enabling a substitution technique; which
-shows the following expression: $$
+shows the following expression: 
+
+$$
 u = \frac{x}{\beta}
-$$ $$
+$$ 
+
+$$
 du = \frac{1}{\beta} dx
-$$ $$
+$$
+
+$$
 \beta \cdot du = dx
-$$ $$ 
+$$
+
+$$ 
 u = \frac{(\infty)}{\beta} = \infty
-$$ $$ 
+$$
+
+$$ 
 u = \frac{(0)}{\beta} = 0
-$$ Therefore; $$
+$$ 
+
+Therefore; 
+
+$$
 E[x] = \frac{\beta}{\Gamma(\alpha)}\int_0^\infty\ u^{\alpha} \cdot e^{-u} du
-$$ But we want to show that: $$
+$$ 
+
+But we want to show that: 
+
+$$
 E[x] = \alpha \cdot \beta
-$$ We must find a way to eliminate ${\Gamma(\alpha)}$ and in order to do
+$$ 
+
+We must find a way to eliminate ${\Gamma(\alpha)}$ and in order to do
 that we must remember the properties of the Gamma Function to which is
-defined as the following: $$
+defined as the following: 
+
+$$
 \Gamma(\alpha) = \int_0^\infty\ t^{\alpha-1} \cdot e^{-t} dt
-$$ and the following property: $$
+$$ 
+
+and the following property: 
+
+$$
 \Gamma(\alpha+1) = \alpha \cdot \Gamma(\alpha)
-$$ Given this property and definition let us now show $\alpha -1$ by
-substituting it; $\alpha = \nu-1$ then: $$
+$$ 
+
+Given this property and definition let us now show $\alpha -1$ by
+substituting it; $\alpha = \nu-1$ then: 
+
+$$
 E[x] = \frac{\beta}{\Gamma(\alpha)}\int_0^\infty\ u^{\nu-1} \cdot e^{-u} du
 $$
 
 $$
 E[x] = \frac{\beta}{\Gamma(\alpha)} \cdot \Gamma(\nu)
-$$ $$
+$$
+
+$$
 E[x] = \frac{\beta}{\Gamma(\alpha)} \cdot \Gamma(\alpha + 1)
-$$ $$
+$$
+
+$$
 E[x] = \frac{\beta}{\Gamma(\alpha)} \cdot \alpha \cdot \Gamma(\alpha)
-$$ $$
+$$
+
+$$
 E[x] = \alpha \cdot \beta
-$$ $$
+$$
+
+$$
 \mu = \alpha \cdot \beta
-$$ Hence, we have proved that $\mu = \alpha \cdot \beta$.
+$$ 
+
+Hence, we have proved that $\mu = \alpha \cdot \beta$.
 
 Q.E.D.
 
