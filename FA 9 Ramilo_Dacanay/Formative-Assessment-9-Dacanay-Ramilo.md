@@ -4,14 +4,24 @@ Ramilo, Zion John Yousef and Dacanay, Jordan
 2024-05-02
 
 A random variable X is said to have the gamma distribution, or to be
-gamma distributed if the density function is: $$
+gamma distributed if the density function is:
+
+$$
 f(x) = \frac{x^{\alpha-1} e^{-\frac{x}{\beta}}}{\Gamma(\alpha)\beta^\alpha}
-$$ Note: The Gamma Distribution is used for continuous random variables
+$$ 
+
+Note: The Gamma Distribution is used for continuous random variables
 hence, we are to use the continuous definition of the expected value
-which is defined as follows: $$
+which is defined as follows:
+
+$$
 E[x] = \int_0^\infty\ x\cdot f(x) dx
-$$ Given this definition let us substitute $f(x)$ onto the integral;
-which now equates the expected to the following equation: $$
+$$
+
+Given this definition let us substitute $f(x)$ onto the integral;
+which now equates the expected to the following equation:
+
+$$
 E[x] = \int_0^\infty\ x\cdot \frac{x^{\alpha-1} e^{-\frac{x}{\beta}}}{\Gamma(\alpha)\beta^\alpha} dx
 $$ Since we are just integrating with respect to X we are able to remove
 the constants namely: $\frac{1}{\Gamma(\alpha)}$, in addition, let us
